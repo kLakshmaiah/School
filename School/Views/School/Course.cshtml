@@ -1,0 +1,119 @@
+﻿@using SchoolApi.Model;
+@model School.Models.CourseViewModel
+@{
+    ViewBag.Title = "Course";
+   
+}
+<!-- <section id="courses" class="jumbotron text-center text-white"> -->
+<h2 style="text-align:center;"><span style="color:aquamarine">Add Courses</span></h2>
+@*<div class="container border border-light ">*@
+<div  class="container-fluid  text-center text-black ">
+
+    @{
+        bool? Disable = false;
+        if (Model.ViewName != null && Model.ViewName == "view")
+        {
+            Disable = true;
+        }
+        else
+        {
+            Disable = false;
+        }
+    }
+    
+    <form asp-controller="School" asp-action="AddCourse">
+    <input type="hidden" asp-for="AddCourse.CourseId"/>
+        <div class="form-group row my-3">
+            <label asp-for="AddCourse.TitleName" class="col-sm-2 col-form-label p-4 py-1">TitleName</label>
+            <div class="col">
+                <input class="form-control" placeholder="title Name" asp-for="AddCourse.TitleName"
+                   autocomplete="off" disabled="@Disable"/>
+                <span class="text-danger" asp-validation-for="AddCourse.TitleName"></span>
+            </div>
+            <label asp-for="AddCourse.CouresType" class="col-sm-2 col-form-label p-2 py-1"></label>
+            <div class="col">
+                <input class="form-control" placeholder="Coures Type" asp-for="AddCourse.CouresType"
+                       autocomplete="off" disabled="@Disable" />
+                <span class="text-danger" asp-validation-for="AddCourse.CouresType"></span>
+            </div>
+        </div>
+            <div class="form-group row my-3">
+            <label asp-for="AddCourse.Stream" class="col-sm-2 col-form-label p-4 py-1"></label>
+            <div class="col">
+                <input class="form-control" placeholder="Stream" asp-for="AddCourse.Stream"
+                       autocomplete="off" disabled="@Disable" />
+                <span class="text-danger" asp-validation-for="AddCourse.Stream"></span>
+            </div>
+            <label asp-for="AddCourse.CourseFees" class="col-sm-2 col-form-label p-2 py-1"></label>
+            <div class="col">
+                <input class="form-control" placeholder="CourseFees" asp-for="AddCourse.CourseFees"
+                       autocomplete="off" disabled="@Disable" />
+                <span class="text-danger" asp-validation-for="AddCourse.CourseFees"></span>
+            </div>
+        </div>
+        <div class="form-group row my-3">
+            <label asp-for="AddCourse.StartDate" class="col-sm-2 col-form-label p-4 py-1"></label>
+            <div class="col">
+               <input class="form-control" placeholder="StartDate" asp-for="AddCourse.StartDate"
+                       autocomplete="off" disabled="@Disable" />
+                <span class="text-danger" asp-validation-for="AddCourse.StartDate"></span>
+
+            </div>
+            <label asp-for="AddCourse.EndDate" class="col-sm-2 col-form-label p-2 py-1"></label>
+            <div class="col">
+                <input class="form-control" placeholder="EndDate" asp-for="AddCourse.EndDate"
+                       autocomplete="off" disabled="@Disable" />
+                <span class="text-danger" asp-validation-for="AddCourse.EndDate"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-5">
+                <button type="submit" class="btn btn-primary m-0" disabled="@Disable">save</button>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+@*</div>*@
+<!-- </section> -->
+<div class="container-fluid ">
+    <!-- <section> -->
+    <h3 class="text-center"><span style="color:aquamarine">Assign Courses Menu</span></h3>
+    <article>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">TitleName</th>
+                    <th scope="col">Stream</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">StartDate</th>
+                    <th scope="col">EndDate</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-light" id="myTable">
+                @if (Model != null)
+                {
+                    foreach (CourseGridReturn course in Model.CourseGridData)
+                    {
+                        <tr>
+                            <td>@course.TitleName</td>
+                            <td>@course.Stream</td>
+                            <td>@course.CouresType</td>
+                            <td>@course.StartDate.ToShortDateString()</td>
+                            <td>@course.EndDate.ToShortDateString()</td>
+                            <td>
+                                <a asp-controller="School" asp-action="Course" asp-route-Name="view" asp-route-id="@course.CourseId">View</a>
+                                <a asp-controller="School" asp-action="Course" asp-route-Name="edit" asp-route-id="@course.CourseId">Edit</a>
+                                <a asp-controller="School" asp-action="Course" asp-route-Name="delete" asp-route-id="@course.CourseId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <partial name="_PageNation" model="@Model.Pagging"/>
+    </article>
+</div>

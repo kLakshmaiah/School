@@ -1,0 +1,472 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@*@model School.Models.Course;*@
+<!-- <section class=" jumbotron text-center "> -->
+<div class="container-fluid jumbotron text-center">
+
+    <h1 class="jumbotron-heading text-white">Private School</h1>
+
+    <p class="lead text-white">
+        This is your school where every
+        dream becomes a reality.
+    </p>
+    <p>
+        <a asp-action="Course" class="btn btn-primary my-2">Courses</a>
+        <a asp-fragment="students" class="btn btn-primary my-2">Students</a>
+        <a asp-fragment="trainers" class="btn btn-primary my-2">Trainers</a>
+        <a asp-fragment="assignments" class="btn btn-primary my-2">Assignments</a>
+    </p>
+</div>
+
+<!-- </section>  -->
+<div class="container-fluid ">
+    <!-- <section> -->
+    <h3 class="text-center">With Hard Work Everything Is Possible</h3>
+    <article>
+        <div class="container">
+
+            <div class="column">
+                <!-- Post-->
+                <div class="post-module">
+                    <!-- Thumbnail-->
+                    <div class="thumbnail">
+                        <img alt="articl1 photo" src="/pictures/article1.jpeg" />
+                    </div>
+                    <!-- Post Content-->
+                    <div class="post-content">
+                        <h2 class="title">Descipline</h2>
+                        <h2 class="sub_title">Hard work.</h2>
+                        <p class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <!-- Post-->
+                <div class="post-module">
+                    <!-- Thumbnail-->
+                    <div class="thumbnail">
+                        <img alt="articl2 photo" src="/pictures/article2.jpg" />
+                    </div>
+                    <!-- Post Content-->
+                    <div class="post-content">
+                        <h2 class="title">Devotion</h2>
+                        <h2 class="sub_title">Hard work.</h2>
+                        <p class="description">
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                            culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<!-- </section> -->
+<!-- <section id="courses" class="jumbotron text-center text-white"> -->
+<div id="courses" class="container-fluid jumbotron text-center text-white">
+    <h2>Add Courses</h2>
+    <form name="myForm" asp-action="AddCourse">
+        <div class="form-group">
+            <input type="text" class="form-control" id="titlename" placeholder="Title Name" name="tname"
+                   autocomplete="off">
+        </div>
+        <div class="form-group">
+
+            <input type="text" class="form-control" id="stream" placeholder="Stream" name="stream"
+                   autocomplete="off">
+        </div>
+        <div class="form-group">
+            <select class="form-control" id="type">
+                <option id="show">Fulltime</option>
+                <option>Parttime</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" class="form-control" id="startdate" name="startdate" autocomplete="off" required>
+        </div>
+        <div class="form-group">
+            <label>End Date</label>
+            <input type="date" class="form-control" id="enddate" name="enddate" autocomplete="off" required>
+        </div>
+
+    </form>
+    <button type="submit" onclick="validateForm()" class="btn btn-primary">Add Course</button>
+</div>
+
+<!-- </section> -->
+<div class="container-fluid ">
+    <!-- <section> -->
+    <h3 class="text-center">Assign Courses Menu</h3>
+    <article>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">TitleName</th>
+                    <th scope="col">Stream</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">StartDate</th>
+                    <th scope="col">EndDate</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-light" id="myTable">
+                <tr>
+                    <td>Course1</td>
+                    <td>Javascript</td>
+                    <td>Fulltime</td>
+                    <td>01/01/2021</td>
+                    <td>03/01/2021</td>
+                </tr>
+                <tr>
+                    <td>Course1</td>
+                    <td>Javascript</td>
+                    <td>Parttime</td>
+                    <td>01/01/2021</td>
+                    <td>06/01/2021</td>
+                </tr>
+                <tr>
+                    <td>Course2</td>
+                    <td>Go</td>
+                    <td>Parttime</td>
+                    <td>01/01/2021</td>
+                    <td>03/01/2021</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" id="appearupdate" class="btn btn-primary">Edit</button>
+      @*  <partial name="CoursePartial"/>*@
+        <div id="containerupdatecourses">
+            <h3>Update Table</h3>
+            <div class="form-row align-items-center">
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updaterow" placeholder="Specify Row" autocomplete="off">
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control mb-2" id="updatetitlename" placeholder="Titlename" autocomplete="off">
+                </div>
+
+                <div class="col-auto">
+                    <input type="text" class="form-control mb-2" id="updatestream" placeholder="Stream" autocomplete="off">
+                </div>
+
+                <div class="col-auto">
+                    <select class="form-control mb-2" id="updatetype">
+                        <option>Fulltime</option>
+                        <option>Parttime</option>
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <input type="date" class="form-control mb-2" id="updatestartdate" required>
+                </div>
+
+                <div class="col-auto">
+                    <input type="date" class="form-control mb-2" id="updateenddate" required>
+                </div>
+
+            </div>
+            <button type="submit" onclick="updatevalues()" id="disappearupdate"
+                    class="btn btn-primary">
+                Update
+            </button>
+        </div>
+
+    </article>
+</div>
+<!-- </section> -->
+<!-- <section id="students" class="jumbotron text-center text-white"> -->
+<div id="students" class="container-fluid jumbotron text-center text-white">
+    <h2>Add Students</h2>
+    <form name="myForm">
+        <div class="form-group">
+            <input type="text" class="form-control" id="firstname" placeholder="First Name" name="fname"
+                   autocomplete="off">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="lastname" placeholder="Last name" name="lname"
+                   autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" class="form-control" id="dateofbirth" name="dateofbirth" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>Tuition Fees</label>
+            <input type="number" class="form-control" id="tuitionfees" name="tuitionfees" autocomplete="off">
+        </div>
+
+    </form>
+    <button type="submit" onclick="validateFormstudents()" class="btn btn-primary">Add Student</button>
+</div>
+
+<!-- </section> -->
+<div class="container-fluid ">
+    <!-- <section> -->
+    <h3 class="text-center">Assign Students Menu</h3>
+    <article>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">DateOfBirth</th>
+                    <th scope="col">tuitionfees</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-light" id="mytablestudents">
+                <tr>
+                    <td>Konstantinos</td>
+                    <td>Papaspurou</td>
+                    <td>12/12/1990</td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <td>Gewrgios</td>
+                    <td>Georgiou</td>
+                    <td>03/01/1992</td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <td>Alexandros</td>
+                    <td>Grigoriou</td>
+                    <td>04/09/1998</td>
+                    <td>5000</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" id="appearupdatestudents" class="btn btn-primary">Edit</button>
+        <div id="containerupdatestudents">
+            <h3>Update Table</h3>
+            <div class="form-row align-items-center">
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updaterowstudent" placeholder="Specify Row">
+                </div>
+
+                <div class="col-auto">
+                    <input type="text" class="form-control mb-2" id="updatefirstnamestudent"
+                           placeholder="First Name">
+                </div>
+
+                <div class="col-auto">
+                    <input type="text" class="form-control mb-2" id="updatelastnamestudent" placeholder="Last Name">
+                </div>
+
+                <div class="col-auto">
+                    <input type="date" class="form-control mb-2" id="updatedateofbirthstudent">
+                </div>
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="tuitionfeesstudent"
+                           placeholder="tuitionfees">
+                </div>
+
+            </div>
+            <button type="submit" onclick="updatevaluesstudent()" id="disappearupdatestudents"
+                    class="btn btn-primary">
+                Update
+            </button>
+        </div>
+
+    </article>
+</div>
+<!-- </section> -->
+<!-- <section id="trainers" class="jumbotron text-center text-white"> -->
+<div id="trainers" class="container-fluid jumbotron text-center text-white">
+    <h2>Add Trainers</h2>
+    <form name="myForm">
+        <div class="form-group">
+            <input type="text" class="form-control" id="firstnametrainer" placeholder="First Name" name="fname"
+                   autocomplete="off">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="lastnametrainer" placeholder="Last name" name="lname"
+                   autocomplete="off">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject"
+                   autocomplete="off">
+        </div>
+
+    </form>
+    <button type="submit" onclick="validateFormtrainers()" class="btn btn-primary">Add Trainers</button>
+</div>
+
+<!-- </section> -->
+<div class="container-fluid ">
+    <!-- <section> -->
+    <h3 class="text-center">Assign Trainers Menu</h3>
+    <article>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Subject</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-light" id="mytabletrainers">
+                <tr>
+                    <td>Giannis</td>
+                    <td>Theodoridis</td>
+                    <td>Database</td>
+                </tr>
+                <tr>
+                    <td>Georgios</td>
+                    <td>Alepis</td>
+                    <td>Backend</td>
+                </tr>
+                <tr>
+                    <td>Panagiotis</td>
+                    <td>Kotzanikolaou</td>
+                    <td>Backend</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" id="appearupdatetrainers" class="btn btn-primary">Edit</button>
+        <div id="containerupdatetrainers">
+            <h3>Update Table</h3>
+            <div class="form-row align-items-center">
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updaterowtrainer" placeholder="Specify Row">
+                </div>
+
+                <div class="col-auto">
+                    <input type="text" class="form-control mb-2" id="updatefirstnametrainer"
+                           placeholder="First Name">
+                </div>
+
+                <div class="col-auto">
+                    <input type="text" class="form-control mb-2" id="updatelastnametrainer" placeholder="Last Name">
+                </div>
+
+                <div class="col-auto">
+                    <input type="text" class="form-control mb-2" id="updatesubjecttrainer" placeholder="Subject">
+                </div>
+
+            </div>
+            <button type="submit" onclick="updatevaluestrainers()" id="disappearupdatetrainers"
+                    class="btn btn-primary">
+                Update
+            </button>
+        </div>
+
+    </article>
+</div>
+<!-- </section> -->
+<!-- <section id="assignments" class="jumbotron text-center text-white"> -->
+<div id="assignments" class="container-fluid jumbotron text-center text-white">
+    <h2>Add Assignments</h2>
+    <form name="myForm">
+        <div class="form-group">
+            <input type="text" class="form-control" id="title" placeholder="Title name" name="fname"
+                   autocomplete="off">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="description" placeholder="description" name="lname"
+                   autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>Submission Date</label>
+            <input type="date" class="form-control" id="subdatetime" name="subdatetime" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>Oral Mark</label>
+            <input type="number" class="form-control" id="oralmark" name="oralmark" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>Total Mark</label>
+            <input type="number" class="form-control" id="totalmark" name="totalmark" autocomplete="off">
+        </div>
+    </form>
+    <button type="submit" onclick="validateFormAssignments()" class="btn btn-primary">Add Assignments</button>
+</div>
+
+<!-- </section> -->
+<!-- <section> -->
+<div class="container-fluid ">
+    <h3 class="text-center">Assign Assignments Menu</h3>
+    <article>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Subdatetime</th>
+                    <th scope="col">Oralmark</th>
+                    <th scope="col">Totalmark</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-light" id="mytableassignments">
+                <tr>
+                    <td>Assignment1</td>
+                    <td>Create a hello world app</td>
+                    <td>01/01/2021</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Assignment2</td>
+                    <td>Create a constructor example.</td>
+                    <td>01/11/2021</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Assignment3</td>
+                    <td>Create an array example.</td>
+                    <td>01/20/2021</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" id="appearupdateassignments" class="btn btn-primary">Edit</button>
+        <div id="containerupdateassignments">
+            <h3>Update Table</h3>
+            <div class="container-fluid form-row align-items-center">
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updaterowassignment"
+                           placeholder="Specify Row">
+                </div>
+
+                <div class="col-auto">
+                    <input type="text" class="form-control mb-2" id="updatetitle" placeholder="Title name">
+                </div>
+
+                <div class="col-auto">
+                    <input type="text" class="form-control mb-2" id="updatedescription" placeholder="Description">
+                </div>
+
+                <div class="col-auto">
+                    <input type="date" class="form-control mb-2" id="updatedatesubdatetime">
+                </div>
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updateoralmark" placeholder="oralmark">
+                </div>
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updatetotalmark" placeholder="totalmark">
+                </div>
+            </div>
+            <button type="submit" onclick="updatevaluesAssignments()" id="disappearupdateassignments"
+                    class="btn btn-primary">
+                Update
+            </button>
+        </div>
+
+    </article>
+</div>
+<!-- </section> -->

@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "Trainers";
+}
+<div id="courses" class="container-fluid jumbotron text-center text-white">
+    <div class="row">
+        <div class="col">
+            <h2>Assign Trainers Per Courses</h2>
+            <form name="myForm">
+                <div class="form-group">
+                    <input type="number" class="form-control" id="trainerid" placeholder="Trainer Id" name="tname"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+
+                    <input type="number" class="form-control" id="courseid" placeholder="Course Id" name="stream"
+                           autocomplete="off">
+                </div>
+            </form>
+            <button type="submit" onclick="validateFormTrainersPerCourses()" class="btn btn-primary">Add Trainers Per Course</button>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">TrainerId</th>
+                        <th scope="col">Firsname</th>
+                        <th scope="col">Lastname</th>
+
+                    </tr>
+                </thead>
+                <tbody class="tbody-light">
+                    <tr>
+                        <td>1</td>
+                        <td>Nikos</td>
+                        <td>Theodoridis</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Alexandros</td>
+                        <td>Alepis</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Giannis</td>
+                        <td>Theodoridis</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">CourseId</th>
+                        <th scope="col">Tytlename</th>
+                        <th scope="col">Stream</th>
+                        <th scope="col">Type</th>
+
+                    </tr>
+                </thead>
+                <tbody class="tbody-light">
+                    <tr>
+                        <td>1</td>
+                        <td>Course1</td>
+                        <td>Javascript</td>
+                        <td>Fulltime</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Course1</td>
+                        <td>Javascript</td>
+                        <td>Parttime</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Course2</td>
+                        <td>Go</td>
+                        <td>Parttime</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    @{
+        ViewData["Title"] = "Trainers Per Courses";
+    }
+
+<div class="container-fluid ">
+    <h3 class="text-center">Trainers Per Courses</h3>
+    <article>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">TrainerId</th>
+                    <th scope="col">Firsname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">CourseId</th>
+                    <th scope="col">Tytlename</th>
+                    <th scope="col">Stream</th>
+                    <th scope="col">Type</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-light" id="myTableTrainers">
+                <tr>
+                    <td>1</td>
+                    <td>Nikos</td>
+                    <td>Theodoridis</td>
+                    <td>3</td>
+                    <td>Course2</td>
+                    <td>Go</td>
+                    <td>Parttime</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <button type="submit" id="appearupdate" class="btn btn-primary">Edit</button>
+        <div id="containerupdatecourses">
+            <h3>Update Table</h3>
+            <div class="form-row align-items-center">
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updaterow" placeholder="Specify Row">
+                </div>
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updatecourseid" placeholder="Courseid">
+                </div>
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updatetrainerid" placeholder="TrainerId">
+                </div>
+
+            </div>
+            <button type="submit" onclick="updateFormTrainersPerCourse()" id="disappearupdate"
+                    class="btn btn-primary">
+                Update
+            </button>
+        </div>
+
+    </article>
+</div>

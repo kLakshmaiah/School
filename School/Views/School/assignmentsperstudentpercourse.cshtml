@@ -1,0 +1,174 @@
+﻿@{
+    ViewData["Title"] = "Assign Assignments Per Course Per Student";
+}
+
+<div id="courses" class="container-fluid jumbotron text-center text-white">
+    <div class="row">
+        <div class="col">
+            <h2>Assign Assignments Per Course Per Student</h2>
+            <form name="myForm">
+                <div class="form-group">
+                    <input type="number" class="form-control" id="studentid" placeholder="Student Id" name="tname"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+
+                    <input type="number" class="form-control" id="courseid" placeholder="Course Id" name="stream"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+
+                    <input type="number" class="form-control" id="assignmentid" placeholder="Assignment Id" name="stream"
+                           autocomplete="off">
+                </div>
+            </form>
+            <button type="submit" onclick="validateFormAssignmentsPerStudentPerCourse()" class="btn btn-primary">Add Assignments Per Student Per Course</button>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">StudentId</th>
+                        <th scope="col">Firsname</th>
+                        <th scope="col">Lastname</th>
+
+                    </tr>
+                </thead>
+                <tbody class="tbody-light">
+                    <tr>
+                        <td>1</td>
+                        <td>Konstantinos</td>
+                        <td>Kousounnis</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Georgios</td>
+                        <td>Georgiou</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Nikolas</td>
+                        <td>Xristodoulopoulos</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">CourseId</th>
+                        <th scope="col">Titlename</th>
+                        <th scope="col">Stream</th>
+                        <th scope="col">Type</th>
+
+                    </tr>
+                </thead>
+                <tbody class="tbody-light">
+                    <tr>
+                        <td>1</td>
+                        <td>Course1</td>
+                        <td>Javascript</td>
+                        <td>Fulltime</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Course1</td>
+                        <td>Javascript</td>
+                        <td>Parttime</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Course2</td>
+                        <td>Go</td>
+                        <td>Parttime</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">AssignmentId</th>
+                        <th scope="col">Title</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody-light">
+                    <tr>
+                        <td>1</td>
+                        <td>Assignment1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Assignment2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Assignment3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid ">
+
+    <h3 class="text-center">Student Per Courses</h3>
+    <article>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">StudentId</th>
+                    <th scope="col">Firsname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">CourseId</th>
+                    <th scope="col">Tytlename</th>
+                    <th scope="col">Stream</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">AssignmentId</th>
+                    <th scope="col">Title</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-light" id="myTableAssignmentsPerCoursePerStudent">
+                <tr>
+                    <td>1</td>
+                    <td>Konstantinos</td>
+                    <td>Kousounnis</td>
+                    <td>3</td>
+                    <td>Course2</td>
+                    <td>Go</td>
+                    <td>Parttime</td>
+                    <td>1</td>
+                    <td>Assignment3</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <button type="submit" id="appearupdate" class="btn btn-primary">Edit</button>
+        <div id="containerupdatecourses">
+            <h3>Update Table</h3>
+            <div class="form-row align-items-center">
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updaterow" placeholder="Specify Row">
+                </div>
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updatestudentid" placeholder="StudentId">
+                </div>
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updatecourseid" placeholder="Courseid">
+                </div>
+
+                <div class="col-auto">
+                    <input type="number" class="form-control mb-2" id="updateassignmentid" placeholder="AssignmentId">
+                </div>
+
+            </div>
+            <button type="submit" onclick="updateAssignmentssPerCoursePerStudent()" id="disappearupdate"
+                    class="btn btn-primary">
+                Update
+            </button>
+        </div>
+
+    </article>
+</div>
